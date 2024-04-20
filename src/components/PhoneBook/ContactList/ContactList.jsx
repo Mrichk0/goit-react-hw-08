@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
 
 import styles from './contactList.module.css';
+import { useSelector } from 'react-redux';
+import { selectFilteredContacts } from '../../../redux/selectors';
 
-const ContactList = ({ contacts, removeContact }) => {
+const ContactList = ({ removeContact }) => {
+  const contacts = useSelector(selectFilteredContacts);
   const elements = contacts.map(({ id, name, number }) => (
-    <li key={id}>
-      {' '}
+    <li className={styles.list} key={id}>
       {name}: {number}
       <button className={styles.btn} onClick={() => removeContact(id)}>
         Delete
