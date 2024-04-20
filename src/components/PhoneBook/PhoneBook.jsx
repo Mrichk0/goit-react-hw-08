@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-import { addContact, deleteContact } from '../../redux/operations';
+import { addContact, deleteContact } from '../../redux/contactsOps';
 
 import styles from './phoneBook.module.css';
 
