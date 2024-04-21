@@ -1,13 +1,29 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form } from 'formik';
-import basicSchema from '../../../schemas/index.js';
 import CustomInput from '../CustomInput/CustomInput';
+import { addContact } from '../../../redux/contactsOps.js';
+import basicSchema from '../../../schemas/index.js';
+import { selectContacts } from '../../../redux/selectors';
+
 import style from './contactForm.module.css';
 
-const ContactForm = ({ onSubmit }) => {
+const ContactForm = () => {
+  const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
+  const addNewContact = data => {
+    const isDuplicated = contacts
+      ? contacts.find(contact => contact.name === data.name)
+      : false;
+
+    if (isDuplicated) {
+      alert(`${data.name} is already in contacts`);
+      return;
+    }
+    dispatch(addContact(data));
+  };
   const onSubmitForm = (values, { resetForm }) => {
-    onSubmit(values);
+    addNewContact(values);
     resetForm();
   };
 
@@ -47,10 +63,6 @@ const ContactForm = ({ onSubmit }) => {
       )}
     </Formik>
   );
-};
-
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
 };
 
 export default ContactForm;
