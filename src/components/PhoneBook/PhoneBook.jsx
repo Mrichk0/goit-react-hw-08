@@ -1,16 +1,23 @@
-import { useSelector } from 'react-redux';
-
-import styles from './phoneBook.module.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchContacts } from '../../redux/contacts/contactsOps';
 
 import ContactForm from './ContactsForm';
 import ContactList from './ContactList';
 import Filter from './SearchBox';
 
+import { useEffect } from 'react';
+
 import { selectIsLoading, selectError } from '../../redux/selectors';
 
+import styles from './phoneBook.module.css';
 const PhoneBook = () => {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <div className={styles.container}>

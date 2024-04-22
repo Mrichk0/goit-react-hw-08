@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form } from 'formik';
-import CustomInput from '../CustomInput/CustomInput';
-import { addContact } from '../../../redux/contactsOps.js';
-import basicSchema from '../../../schemas/index.js';
+import CustomInput from '../../../shared/components/CustomInput/CustomInput';
+import { addContact } from '../../../redux/contacts/contactsOps.js';
+import { basicSchema } from '../../../schemas/index.js';
 import { selectContacts } from '../../../redux/selectors';
 
 import style from './contactForm.module.css';
@@ -23,6 +23,7 @@ const ContactForm = () => {
     dispatch(addContact(data));
   };
   const onSubmitForm = (values, { resetForm }) => {
+    e.preventDefault();
     addNewContact(values);
     resetForm();
   };

@@ -1,19 +1,19 @@
-import PhoneBook from './PhoneBook';
-
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchContacts } from '../redux/contactsOps';
+import { fetchCurrentUser } from '../redux/auth/authOperations';
+import NavigationRoutes from '../components/PhoneBook/NavigationRoutes';
+import s from './app.module.css';
 
 export const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchContacts());
-  }, []);
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
 
   return (
-    <div>
-      <PhoneBook />
+    <div className={s.container}>
+      <NavigationRoutes />
     </div>
   );
 };
