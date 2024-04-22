@@ -1,7 +1,7 @@
 import { Formik, Form } from 'formik';
 
 import { useDispatch } from 'react-redux';
-import { login } from '../../redux/auth/authOperations';
+import { login } from '../../redux/auth/operations';
 
 import CustomInput from '../../shared/components/CustomInput/CustomInput';
 import { loginSchema } from '../../schemas/index.js';

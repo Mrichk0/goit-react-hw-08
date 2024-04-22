@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchCurrentUser } from '../redux/auth/authOperations';
+import { fetchCurrentUser } from '../redux/auth/operations';
 import NavigationRoutes from '../components/PhoneBook/NavigationRoutes';
 import s from './app.module.css';
 
